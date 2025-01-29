@@ -14,10 +14,16 @@ return new class extends Migration {
             $table->string('hash')->unique()->nullable();
             $table->unsignedBigInteger('nonce');
             $table->json('data');
+            $table->timestamp('became_invalid_at')->nullable();
             $table->timestamps();
 
-            $table->index([DB::raw("json_extract(data, '$.voter_id')")], 'voter_id_index');
-            $table->index([DB::raw("json_extract(data, '$.candidate_id')")], 'candidate_id_index');
+            // Add generated columns for JSON fields
+            $table->string('voter_id')->storedAs("JSON_UNQUOTE(JSON_EXTRACT(data, '$.voter_id'))");
+            $table->unsignedBigInteger('candidate_id')->storedAs("JSON_UNQUOTE(JSON_EXTRACT(data, '$.candidate_id'))");
+
+            // Add indexes on the generated columns
+            $table->index('voter_id', 'voter_id_index');
+            $table->index('candidate_id', 'candidate_id_index');
         });
 
         $data = json_encode([
@@ -30,7 +36,7 @@ return new class extends Migration {
         $genesisBlockHash = hash('sha256', $data);
 
         // Create the genesis block in the ledger
-       Ledger::create([
+        Ledger::create([
             'previous_hash' => null,
             'hash' => $genesisBlockHash,
             'nonce' => 0,

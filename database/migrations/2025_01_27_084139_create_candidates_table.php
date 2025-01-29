@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('party');
+            $table->string('color');
             $table->text('description');
             $table->string('image')->nullable();
             $table->timestamps();

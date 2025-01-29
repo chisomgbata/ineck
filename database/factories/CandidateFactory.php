@@ -17,6 +17,7 @@ class CandidateFactory extends Factory
             'party' => $this->faker->word(),
             'description' => $this->faker->text(),
             'image' => $this->faker->imageUrl(),
+            'color' => $this->faker->hexColor(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

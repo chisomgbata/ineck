@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Jobs\MineBlockJob;
 use App\Models\Candidate;
 use App\Models\Ledger;
 use Exception;
@@ -16,7 +15,12 @@ class VoterService
     {
 
         $voter = auth()->user();
-        $hasVotedBefore = Ledger::whereJsonContains('data->voter_id', $voter->id)
+
+        if (!$voter) {
+            throw new Exception('Unauthorized', 401);
+        }
+
+        $hasVotedBefore = Ledger::where('voter_id', $voter->id)
             ->exists();
         if ($hasVotedBefore) {
             throw new Exception('You have already voted', 400);
@@ -38,8 +42,6 @@ class VoterService
                 'candidate_name' => $candidate->name,
             ],
         ]);
-
-        MineBlockJob::dispatch($ledger->id);
-
+        
     }
 }

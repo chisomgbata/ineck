@@ -1,30 +1,13 @@
 <div>
-    <canvas id="myChart"></canvas>
-
-    <script>
-        import Chart from 'chart.js/auto';
-
-        const ctx = document.getElementById('myChart');
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
+    <x-top-header/>
+    <main class="container mx-auto mt-4 flex flex-col lg:flex-row gap-4 p-2">
+        <div class="w-full lg:w-2/3">
+            <livewire:list-votes/>
+        </div>
+        <div class="w-full lg:w-1/3 h-full mt-8 lg:mt-0">
+            <livewire:vote-bar-chart/>
+        </div>
+    </main>
 </div>
 
 
