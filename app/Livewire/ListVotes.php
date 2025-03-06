@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Ledger;
+use Faker\Provider\Text;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -25,6 +26,7 @@ class ListVotes extends Component implements HasForms, HasTable
         return $table
             ->query(Ledger::query()->whereNotNull(['candidate_id', 'voter_id', 'hash'])->with(['candidate', 'voter'])->latest())
             ->columns([
+                TextColumn::make('id')->label('Block ID')->searchable()->sortable(),
                 TextColumn::make('candidate.party')->searchable()->label('Party'),
                 TextColumn::make('candidate.name')->searchable()->label('Candidate'),
                 TextColumn::make('voter.id')->searchable()->sortable(),

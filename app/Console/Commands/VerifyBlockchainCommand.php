@@ -34,6 +34,7 @@ class VerifyBlockchainCommand extends Command
 
             // Validate the connection to the next block
             if ($next && $current->hash !== $next->previous_hash) {
+
                 $this->error('Blockchain is invalid at block ' . $next->id . '. Hash mismatch.');
                 return;
             }
