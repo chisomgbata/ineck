@@ -28,7 +28,15 @@
                                 type="text" placeholder="LAST NAME" id="" name="last_name" wire:model="last_name">
                             <input
                                 class="px-6 py-3 w-full border border-gray-200 placeholder-gray-500 text-sm focus:ring focus:ring-gray-300 transition duration-200 outline-none mb-6"
-                                type="text" placeholder="6 DIGIT PIN" id="" name="pin" wire:model="pin">
+                                type="text"
+                                placeholder="6 DIGIT PIN"
+                                id="pin"
+                                name="pin"
+                                wire:model="pin"
+                                maxlength="6"
+                                pattern="\d{6}"
+                                inputmode="numeric"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)">
                             <button
                                 class="px-6 py-3 block text-center w-full bg-green-500 text-white text-sm font-bold hover:bg-green-600 focus:ring focus:ring-green-300 transition duration-200"
                                 type="submit">Get Started
@@ -60,14 +68,15 @@
                             Created</h1>
                         <p class="text-gray-400 text-center text-sm mb-16 ">
                             Copy and Keep Voter ID Safe,
-                            You will need it to access your account
+                            You will need it to access your account,
+                            And Losing it means you will lose access to your account.
                         </p>
 
-                        <p class="p-4 text-xl font-bold font-mono bg-gray-500 flex-wrap flex">
+                        <p class="text-xl font-bold font-mono bg-gray-200 text-center rounded-lg">
                             {{$hash}}
                         </p>
 
-                        <div class="flex flex-wrap justify-center gap-4"><a
+                        <div class="flex flex-wrap justify-center gap-4 mt-4"><a
                                 class="px-6 py-3 block text-center w-full sm:w-auto bg-green-500 text-white text-sm font-bold hover:bg-green-600 focus:ring focus:ring-green-300 transition duration-200"
                                 href="{{ route('votes') }}">Okay</a></div>
                     </div>

@@ -8,7 +8,7 @@ use Filament\Widgets\ChartWidget;
 class VoteBarChart extends ChartWidget
 {
     protected static ?string $heading = 'Live Vote Tally';
-    protected static ?string $pollingInterval = '5s';
+    protected static ?string $pollingInterval = '3s';
 
     protected function getData(): array
     {

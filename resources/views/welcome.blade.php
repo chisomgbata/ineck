@@ -45,13 +45,15 @@
                     <p class="text-gray-600 mb-6 max-w-lg">What is the National Electoral Board's innovative solution
                         for secure and transparent voting? Discover the power of Blockchain technology with Ineck.</p>
                     <div class="flex flex-wrap -m-2 mb-20">
-                        <div class="p-2 w-full sm:w-auto"><a
-                                class="px-6 py-3 block text-center bg-green-500 text-white text-sm font-bold hover:bg-green-600 focus:ring focus:ring-green-300 transition duration-200"
-                                href="{{ route('register') }}"> Get Accredicted <br> </a></div>
-                        <div class="p-2 w-full sm:w-auto"><a
-                                class="px-6 py-3 block text-center bg-orange-900 text-white text-sm font-bold hover:bg-orange-800 focus:ring focus:ring-orange-700 transition duration-200"
-                                href="#">LOGIN
-                            </a></div>
+                        @guest
+                            <div class="p-2 w-full sm:w-auto"><a
+                                    class="px-6 py-3 block text-center bg-green-500 text-white text-sm font-bold hover:bg-green-600 focus:ring focus:ring-green-300 transition duration-200"
+                                    href="{{ route('register') }}"> Get Accredicted <br> </a></div>
+                            <div class="p-2 w-full sm:w-auto"><a
+                                    class="px-6 py-3 block text-center bg-orange-900 text-white text-sm font-bold hover:bg-orange-800 focus:ring focus:ring-orange-700 transition duration-200"
+                                    href="{{ route('login') }}">LOGIN
+                                </a></div>
+                        @endguest
                     </div>
                     <div class="flex flex-wrap -m-4">
                         <div class="w-full sm:w-1/3 lg:w-1/6 p-4"><img class="h-6 mx-auto" src="images/unn.png" alt="">

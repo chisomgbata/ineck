@@ -19,6 +19,7 @@ class ListVotes extends Component implements HasForms, HasTable
     use InteractsWithTable;
     use InteractsWithForms;
 
+
     public function table(Table $table): Table
     {
         return $table
@@ -46,7 +47,7 @@ class ListVotes extends Component implements HasForms, HasTable
                     ]),
 
             ])
-            ->heading('Latest Votes');
+            ->heading('Latest Votes')->poll('3s');
 
     }
 
